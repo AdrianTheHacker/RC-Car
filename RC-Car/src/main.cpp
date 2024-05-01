@@ -36,10 +36,12 @@ void moveBackwards() {
   rearLeft.writeMicroseconds(leftSideBackwardsPWM);
 }
 
+
 void stop() {
   frontLeft.writeMicroseconds(stopPWM);
   rearLeft.writeMicroseconds(stopPWM);
 }
+
 
 void loop() {
   moveForward();
@@ -56,6 +58,6 @@ void loop() {
 
   stop();
 
-  delay(500;)
+  delay(500);
 }
 
