@@ -2,6 +2,7 @@
 #include <Servo.h>
 
 
+/*
 Servo frontLeft;
 Servo rearLeft;
 Servo rearRight;
@@ -41,23 +42,17 @@ void stop() {
   frontLeft.writeMicroseconds(stopPWM);
   rearLeft.writeMicroseconds(stopPWM);
 }
+*/
+
+void setup() {
+  Serial.begin(9600);
+  delay(500);
+
+  Serial.println("Drive Code File");
+}
 
 
 void loop() {
-  moveForward();
-
-  delay(500);
-
-  stop();
-
-  delay(500);
-
-  moveBackwards();
-
-  delay(500);
-
-  stop();
-
-  delay(500);
+  delay(50);
 }
 
