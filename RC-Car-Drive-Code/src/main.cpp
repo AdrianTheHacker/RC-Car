@@ -1,5 +1,5 @@
 #include <Arduino.h>
-#include <Servo.h>
+// #include <Servo.h>
 
 
 /*
@@ -44,15 +44,42 @@ void stop() {
 }
 */
 
+/*
+  BLE_Central_Device.ino
+
+  This program uses the ArduinoBLE library to set-up an Arduino Nano 33 BLE Sense 
+  as a central device and looks for a specified service and characteristic in a 
+  peripheral device. If the specified service and characteristic is found in a 
+  peripheral device, the last detected value of the on-board gesture sensor of 
+  the Nano 33 BLE Sense, the APDS9960, is written in the specified characteristic. 
+
+  The circuit:
+  - Arduino Nano 33 BLE Sense. 
+
+  This example code is in the public domain.
+*/
+
+
+bool ledOn = false;
+
+
 void setup() {
   Serial.begin(9600);
-  delay(500);
-
-  Serial.println("Drive Code File");
+  pinMode(13, OUTPUT);
 }
 
 
 void loop() {
-  delay(50);
-}
+  int value = Serial.read();
 
+  if(value > 0) {
+    ledOn = true;
+  }
+
+  if(ledOn) {
+    digitalWrite(13, HIGH);
+  }
+  else {
+    digitalWrite(13, LOW);
+  }
+}
