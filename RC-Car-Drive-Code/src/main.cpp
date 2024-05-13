@@ -1,85 +1,83 @@
 #include <Arduino.h>
-// #include <Servo.h>
-
 
 /*
-Servo frontLeft;
-Servo rearLeft;
-Servo rearRight;
-Servo frontRight;
-
-int leftSideForwardPWM = 1763;
-int leftSideBackwardsPWM = 1763;
-int stopPWM = 1500;
-// int backwardsPWM = 1200;
-// int forwardsPWM = 1700;
-// int stopPWM = 1500;
-
-
-void setup() {
-  Serial.begin(9600);
-
-  frontLeft.attach(2);
-  rearLeft.attach(3);
-  rearRight.attach(4);
-  frontRight.attach(5);
-}
-
-
-void moveForward() {
-  frontLeft.writeMicroseconds(leftSideForwardPWM);
-  rearLeft.writeMicroseconds(leftSideForwardPWM);
-}
-
-
-void moveBackwards() {
-  frontLeft.writeMicroseconds(leftSideBackwardsPWM);
-  rearLeft.writeMicroseconds(leftSideBackwardsPWM);
-}
-
-
-void stop() {
-  frontLeft.writeMicroseconds(stopPWM);
-  rearLeft.writeMicroseconds(stopPWM);
-}
+   -- New project --
+   
+   This source code of graphical user interface 
+   has been generated automatically by RemoteXY editor.
+   To compile this code using RemoteXY library 3.1.10 or later version 
+   download by link http://remotexy.com/en/library/
+   To connect using RemoteXY mobile app by link http://remotexy.com/en/download/                   
+     - for ANDROID 4.13.11 or later version;
+     - for iOS 1.10.3 or later version;
+    
+   This source code is free software; you can redistribute it and/or
+   modify it under the terms of the GNU Lesser General Public
+   License as published by the Free Software Foundation; either
+   version 2.1 of the License, or (at your option) any later version.    
 */
 
-/*
-  BLE_Central_Device.ino
+//////////////////////////////////////////////
+//        RemoteXY include library          //
+//////////////////////////////////////////////
 
-  This program uses the ArduinoBLE library to set-up an Arduino Nano 33 BLE Sense 
-  as a central device and looks for a specified service and characteristic in a 
-  peripheral device. If the specified service and characteristic is found in a 
-  peripheral device, the last detected value of the on-board gesture sensor of 
-  the Nano 33 BLE Sense, the APDS9960, is written in the specified characteristic. 
+// you can enable debug logging to Serial at 115200
+//#define REMOTEXY__DEBUGLOG    
 
-  The circuit:
-  - Arduino Nano 33 BLE Sense. 
+// RemoteXY select connection mode and include library 
+#define REMOTEXY_MODE__SOFTSERIAL
 
-  This example code is in the public domain.
-*/
+#include &lt;SoftwareSerial.h&gt;
 
-
-bool ledOn = false;
+// RemoteXY connection settings 
+#define REMOTEXY_SERIAL_RX 2
+#define REMOTEXY_SERIAL_TX 3
+#define REMOTEXY_SERIAL_SPEED 9600
 
 
-void setup() {
-  Serial.begin(9600);
-  pinMode(13, OUTPUT);
+#include &lt;RemoteXY.h&gt;
+
+// RemoteXY GUI configuration  
+#pragma pack(push, 1)  
+uint8_t RemoteXY_CONF[] =   // 36 bytes
+  { 255,1,0,0,0,29,0,17,0,0,0,31,1,106,200,1,1,1,0,10,
+  37,79,24,24,48,4,26,31,79,78,0,31,79,70,70,0 };
+  
+// this structure defines all the variables and events of your control interface 
+struct {
+
+    // input variables
+  uint8_t pushSwitch_01; // =1 if state is ON, else =0
+
+    // other variable
+  uint8_t connect_flag;  // =1 if wire connected, else =0
+
+} RemoteXY;   
+#pragma pack(pop)
+ 
+/////////////////////////////////////////////
+//           END RemoteXY include          //
+/////////////////////////////////////////////
+
+
+
+void setup() 
+{
+  RemoteXY_Init (); 
+  
+  
+  // TODO you setup code
+  
 }
 
+void loop() 
+{ 
+  RemoteXY_Handler ();
+  
+  
+  // TODO you loop code
+  // use the RemoteXY structure for data transfer
+  // do not call delay(), use instead RemoteXY_delay() 
 
-void loop() {
-  int value = Serial.read();
 
-  if(value > 0) {
-    ledOn = true;
-  }
-
-  if(ledOn) {
-    digitalWrite(13, HIGH);
-  }
-  else {
-    digitalWrite(13, LOW);
-  }
 }
